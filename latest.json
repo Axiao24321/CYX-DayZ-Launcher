@@ -1,0 +1,29 @@
+{
+  "version": "1.2.3",
+  "mandatory": true,
+  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part01",
+  "mirrors": [
+    "https://cyx-dayz-launcher.kai82982.chatgpt.site/downloads/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part01"
+  ],
+  "sha256": "0b73461031ad0e41c99d4e73db0f8513c15d9896b0c96bafc80ad87b59bdcf87",
+  "size": 34789967,
+  "parts": [
+    {
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part01",
+      "mirrors": [
+        "https://cyx-dayz-launcher.kai82982.chatgpt.site/downloads/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part01"
+      ],
+      "sha256": "06f9da3803bd8f9a68449e1b13756021b277e477da976440ea1a65ca38c2aaaa",
+      "size": 18874368
+    },
+    {
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part02",
+      "mirrors": [
+        "https://cyx-dayz-launcher.kai82982.chatgpt.site/downloads/CYX_Dayz_Launcher_v1.2.3_Setup.exe.part02"
+      ],
+      "sha256": "0a131035155af3ecbe53099b50107ff06ba9418b1376ee082d304b77d1687be5",
+      "size": 15915599
+    }
+  ],
+  "notes": "新增 GitHub Pages 公共更新镜像与自动故障切换；更新清单和安装包分片都会在主地址不可用时自动尝试备用地址。"
+}
