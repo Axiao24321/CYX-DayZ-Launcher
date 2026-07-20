@@ -30,25 +30,21 @@
   <main>
     <div class="tag">CYX · DAYZ LAUNCHER</div>
     <h1>一键对齐模组，<br>快速进入服务器。</h1>
-    <p>GitHub 公共镜像，无需登录 ChatGPT。安装包会在浏览器内下载两个已校验分片并自动合并。</p>
-    <div class="version"><span class="dot"></span> 最新版 v1.2.3</div>
+    <p>GitHub 公共镜像，无需登录。安装包会按更新清单下载已校验分片并在浏览器内自动合并。</p>
+    <div class="version"><span class="dot"></span> 最新版 v1.2.4</div>
     <div class="actions">
-      <button id="download">下载 v1.2.3 安装包</button>
-      <a class="button" href="CYX_DayZ_PlayerLauncher_v1.2.3_Source.zip">下载源码</a>
+      <button id="download">下载 v1.2.4 安装包</button>
+      <a class="button" href="CYX_DayZ_PlayerLauncher_v1.2.4_Source.zip">下载源码</a>
       <a class="button" href="https://github.com/Axiao24321/CYX-DayZ-Launcher">查看 GitHub 仓库</a>
     </div>
     <div id="status" role="status" aria-live="polite"></div>
     <div class="grid">
-      <div class="card"><strong>双更新源</strong>GitHub Pages 与原更新站自动切换。</div>
+      <div class="card"><strong>公共更新源</strong>GitHub Pages 无需登录即可检查并下载更新。</div>
       <div class="card"><strong>完整性校验</strong>分片和完整安装包都校验 SHA-256。</div>
       <div class="card"><strong>Steam 增量更新</strong>只把确认过期的模组交给 Steam 修复。</div>
     </div>
   </main>
   <script>
-    const parts = [
-      "CYX_Dayz_Launcher_v1.2.3_Setup.exe.part01",
-      "CYX_Dayz_Launcher_v1.2.3_Setup.exe.part02"
-    ];
     const button = document.querySelector("#download");
     const status = document.querySelector("#status");
     button.addEventListener("click", async () => {
@@ -56,6 +52,11 @@
       const chunks = [];
       let received = 0;
       try {
+        status.textContent = "正在读取更新清单…";
+        const manifestResponse = await fetch(`latest.json?t=${Date.now()}`, {cache:"no-store"});
+        if (!manifestResponse.ok) throw new Error(`清单 HTTP ${manifestResponse.status}`);
+        const manifest = await manifestResponse.json();
+        const parts = manifest.parts.map(part => part.url);
         for (let i = 0; i < parts.length; i++) {
           status.textContent = `正在下载分片 ${i + 1}/${parts.length}…`;
           const response = await fetch(parts[i], {cache:"no-store"});
@@ -68,7 +69,7 @@
         const url = URL.createObjectURL(new Blob(chunks, {type:"application/vnd.microsoft.portable-executable"}));
         const link = document.createElement("a");
         link.href = url;
-        link.download = "CYX_Dayz_Launcher_v1.2.3_Setup.exe";
+        link.download = `CYX_Dayz_Launcher_v${manifest.version}_Setup.exe`;
         document.body.appendChild(link);
         link.click();
         link.remove();
