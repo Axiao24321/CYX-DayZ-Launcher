@@ -1,20 +1,20 @@
 {
-  "version": "1.2.4",
+  "version": "1.2.5",
   "mandatory": true,
-  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.4_Setup.exe.part01",
-  "sha256": "fab950a42ae5b0da52f9b2ce53040eba45f112dbd1a4075f25e3a886bff2aec6",
-  "size": 34792524,
+  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.5_Setup.exe.part01",
+  "sha256": "655d66593e5a052eb3e60eacc9ac420ea23b1b92da95182b878839e8b11c061a",
+  "size": 34799478,
   "parts": [
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.4_Setup.exe.part01",
-      "sha256": "6d7caed31293860b84ec6dbc9e13c82636029af9721532f305d5a3049e37588f",
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.5_Setup.exe.part01",
+      "sha256": "52c377793694fde49df0565a468051036bf47cc6f0440272dfb9810cc71323be",
       "size": 18874368
     },
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.4_Setup.exe.part02",
-      "sha256": "79b61c309c2a3266b7e66bca4ef6546278f05a447c09087453cbbbb721fa915e",
-      "size": 15918156
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.5_Setup.exe.part02",
+      "sha256": "55f36e9eaa65f3fefdb949568afaa50e0c2a0a9b3e3b1bcf31e6edcce858bac5",
+      "size": 15925110
     }
   ],
-  "notes": "修正大型 Workshop 模组的修理量显示：从 Steam content_log 分离真实联网下载、本地复用与磁盘文件处理量，不再把数 GB 本地处理误报成联网下载。"
+  "notes": "新增所选服务器实时在线人数显示，每 30 秒自动刷新；新增安全关闭游戏按钮，只关闭 DayZ 玩家客户端，不影响 Steam 或 DayZ 服务器。"
 }
