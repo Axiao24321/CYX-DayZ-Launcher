@@ -2,18 +2,18 @@
   "version": "1.2.6",
   "mandatory": true,
   "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.6_Setup.exe.part01",
-  "sha256": "5ecccba5fe73794cf54ebc94df5c9980865734d76386349a6427a4551f5de54e",
-  "size": 34802538,
+  "sha256": "972226ac2da9be574f973835dad36fc4ae3f1efddfd30c9838c5b118793b9b01",
+  "size": 34802480,
   "parts": [
     {
       "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.6_Setup.exe.part01",
-      "sha256": "055b36c60bfc1eba1c74623c1182da2bec1a04936e548ff4214a5c706fea5942",
+      "sha256": "3626f94b97770051b7f847c05cd03c257b4927914ce0e6aabd292acadc89cd77",
       "size": 18874368
     },
     {
       "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.6_Setup.exe.part02",
-      "sha256": "0be0c7077564e310c2ec0258cd0b9012ddc91d0ac020db5109b4c3c11f3fa8dc",
-      "size": 15928170
+      "sha256": "4a5ebbdc9872926cafd15b839e6ea7ce47da59d80e9212795f56d8225146a083",
+      "size": 15928112
     }
   ],
   "notes": "修复 Steam 内容源暂不可用时长期卡住的问题：识别异步失败并自动重试；更新状态只显示真实联网下载量；修理时不再自动打开 Steam 下载页或创意工坊页面。"
