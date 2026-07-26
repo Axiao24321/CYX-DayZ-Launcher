@@ -1,20 +1,20 @@
 {
-  "version": "1.2.7",
+  "version": "1.2.8",
   "mandatory": true,
-  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.7_Setup.exe.part01",
-  "sha256": "4c74a1fc379f463247a1a2c900adddb81e4d0962c0bc829174fc9cfe3a7cda67",
-  "size": 36488214,
+  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.8_Setup.exe.part01",
+  "sha256": "f86bb32027516c1b6562fd7d4d1df823c7c80e2cf052f161d5da65a9ec8021d4",
+  "size": 36489985,
   "parts": [
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.7_Setup.exe.part01",
-      "sha256": "847eceeeb9fa790fccf14464e3540ee63b46c32c20b3fc4a99339d07c7154099",
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.8_Setup.exe.part01",
+      "sha256": "209a2c07dc303c3044a31d6671d108dfb6f609b0999652fdaca8d0be0f7f70b3",
       "size": 18874368
     },
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.7_Setup.exe.part02",
-      "sha256": "388702e12d05c84584b13cd43c42043e796416769ff55f0d3ab7dc901edbfeaa",
-      "size": 17613846
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.8_Setup.exe.part02",
+      "sha256": "e35460771d06af92e712d2187657ff9fdf9d9f56f8a000e73987ca2f4cf481c0",
+      "size": 17615617
     }
   ],
-  "notes": "全新暗金三栏界面：服务器卡片、实时人数、表格式模组列表和等比背景；修复高 DPI 下控件重叠及点击后布局跳动；优化启动器更新状态与 Steam 模组下载监控。"
+  "notes": "修复发布版在高 DPI 环境下启动时左侧玩家信息栏被错误压缩和内容裁切的问题；窗口初始化、缩放和最大化后都会等待三栏布局稳定并自动重新对齐。"
 }
