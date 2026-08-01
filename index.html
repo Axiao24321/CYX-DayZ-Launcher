@@ -31,22 +31,60 @@
     <div class="tag">CYX · DAYZ LAUNCHER</div>
     <h1>一键对齐模组，<br>快速进入服务器。</h1>
     <p>GitHub 公共镜像，无需登录。安装包会按更新清单下载已校验分片并在浏览器内自动合并。</p>
-    <div class="version"><span class="dot"></span> 最新版 v1.2.9</div>
+    <div class="version"><span class="dot"></span> 最新版 v1.3.0</div>
     <div class="actions">
-      <button id="download">下载 v1.2.9 安装包</button>
-      <a class="button" href="CYX_DayZ_PlayerLauncher_v1.2.9_Source.zip">下载源码</a>
+      <button id="download">下载 v1.3.0 安装包</button>
+      <a class="button" href="CYX_DayZ_PlayerLauncher_v1.3.0_Source.zip">下载源码</a>
       <a class="button" href="https://github.com/Axiao24321/CYX-DayZ-Launcher">查看 GitHub 仓库</a>
     </div>
     <div id="status" role="status" aria-live="polite"></div>
     <div class="grid">
       <div class="card"><strong>公共更新源</strong>GitHub Pages 无需登录即可检查并下载更新。</div>
-      <div class="card"><strong>完整性校验</strong>分片和完整安装包都校验 SHA-256。</div>
+      <div class="card"><strong>签名与完整性</strong>清单验证 Ed25519 签名，分片和完整安装包验证 SHA-256。</div>
       <div class="card"><strong>Steam 增量更新</strong>只把确认过期的模组交给 Steam 修复。</div>
     </div>
   </main>
   <script>
     const button = document.querySelector("#download");
     const status = document.querySelector("#status");
+    const updatePublicKey = "yFMtRlOKBLJYkP6Y+vU1Y+9oOPl3MrPIvaaBmGWbtA0=";
+    const expectedKeyId = "cyx-update-2026-01";
+    const fromBase64 = value => Uint8Array.from(atob(value), char => char.charCodeAt(0));
+    const toHex = buffer => [...new Uint8Array(buffer)].map(value => value.toString(16).padStart(2, "0")).join("");
+    const sortedValue = value => {
+      if (Array.isArray(value)) return value.map(sortedValue);
+      if (value && typeof value === "object") {
+        return Object.keys(value).sort().reduce((result, key) => {
+          result[key] = sortedValue(value[key]);
+          return result;
+        }, {});
+      }
+      return value;
+    };
+    const verifyManifest = async manifest => {
+      const signature = manifest.signature;
+      if (!signature || signature.algorithm !== "ed25519" || signature.key_id !== expectedKeyId) {
+        throw new Error("更新清单签名无效");
+      }
+      const unsigned = {...manifest};
+      delete unsigned.signature;
+      const payload = new TextEncoder().encode(JSON.stringify(sortedValue(unsigned)));
+      const publicKey = await crypto.subtle.importKey(
+        "raw",
+        fromBase64(updatePublicKey),
+        {name:"Ed25519"},
+        false,
+        ["verify"]
+      );
+      const valid = await crypto.subtle.verify(
+        {name:"Ed25519"},
+        publicKey,
+        fromBase64(signature.value),
+        payload
+      );
+      if (!valid) throw new Error("更新清单签名校验失败");
+    };
+    const sha256Hex = async buffer => toHex(await crypto.subtle.digest("SHA-256", buffer));
     button.addEventListener("click", async () => {
       button.disabled = true;
       const chunks = [];
@@ -56,17 +94,25 @@
         const manifestResponse = await fetch(`latest.json?t=${Date.now()}`, {cache:"no-store"});
         if (!manifestResponse.ok) throw new Error(`清单 HTTP ${manifestResponse.status}`);
         const manifest = await manifestResponse.json();
-        const parts = manifest.parts.map(part => part.url);
+        await verifyManifest(manifest);
+        const parts = manifest.parts;
         for (let i = 0; i < parts.length; i++) {
           status.textContent = `正在下载分片 ${i + 1}/${parts.length}…`;
-          const response = await fetch(parts[i], {cache:"no-store"});
+          const response = await fetch(parts[i].url, {cache:"no-store"});
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const chunk = await response.arrayBuffer();
+          if (chunk.byteLength !== parts[i].size || await sha256Hex(chunk) !== parts[i].sha256) {
+            throw new Error(`分片 ${i + 1} 完整性校验失败`);
+          }
           received += chunk.byteLength;
           chunks.push(chunk);
         }
-        status.textContent = `已合并 ${(received / 1048576).toFixed(1)} MB，正在保存…`;
-        const url = URL.createObjectURL(new Blob(chunks, {type:"application/vnd.microsoft.portable-executable"}));
+        status.textContent = `已合并 ${(received / 1048576).toFixed(1)} MB，正在校验完整安装包…`;
+        const blob = new Blob(chunks, {type:"application/vnd.microsoft.portable-executable"});
+        if (received !== manifest.size || await sha256Hex(await blob.arrayBuffer()) !== manifest.sha256) {
+          throw new Error("完整安装包校验失败");
+        }
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
         link.download = `CYX_Dayz_Launcher_v${manifest.version}_Setup.exe`;
