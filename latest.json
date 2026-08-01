@@ -1,20 +1,30 @@
 {
-  "version": "1.2.9",
+  "version": "1.3.0",
   "mandatory": true,
-  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.9_Setup.exe.part01",
-  "sha256": "db9e8aab579a709a2d0d0c19f38c7a2a72cf3abc02a58659e8b44746f4d2c5dc",
-  "size": 36489926,
+  "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.3.0_Setup.exe.part01",
+  "sha256": "a5caf41d00d81afea95734e3333c996325f703f3eb6acb218d8190313c848f9c",
+  "size": 40478178,
   "parts": [
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.9_Setup.exe.part01",
-      "sha256": "c7c989845a79065659fc07b946d07dd2693ce3e5835a9e333eb874cffb417fa3",
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.3.0_Setup.exe.part01",
+      "sha256": "8f424442c9a2af17c27f565102e9efe63165d9ecadacade4ac45c93423797eb9",
       "size": 18874368
     },
     {
-      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.2.9_Setup.exe.part02",
-      "sha256": "c7b86af6665ea1425d725a16fb0521ceee6733d9f3ad4168a1de73b008a2f812",
-      "size": 17615558
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.3.0_Setup.exe.part02",
+      "sha256": "b44b2f039e22e9dbf923a787104132d934ca515dd4f0dff11ec25c8ef218cdbb",
+      "size": 18874368
+    },
+    {
+      "url": "https://axiao24321.github.io/CYX-DayZ-Launcher/CYX_Dayz_Launcher_v1.3.0_Setup.exe.part03",
+      "sha256": "37fcf73d24179006f98e62bbafa4f9ad120d91b46b84f5d6aeaec8d4e0289d0c",
+      "size": 2729442
     }
   ],
-  "notes": "修复快速修复误报完成的问题：轻量状态刷新会保留已确认的 Steam 在线更新证据；只有使用与进入服务器相同的完整门禁复检通过后才显示修复完成。"
+  "notes": "新增结构化诊断日志和操作编号, 修复刷新与修理后台回调竞态, 隔离本次 Steam 下载日志避免历史失败重复触发, 删除 ACF 改写旧入口, 修复高 DPI 左栏计算, 更新器新增 Ed25519 清单签名、安装后版本校验和失败回滚。",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "cyx-update-2026-01",
+    "value": "DS1o52ct/ZrAVz6JDTIIgCbuxy8AnOa5uj5U4JECzCJ8k0/na964T2qp329ZulUSbdHmykJY03I3sYR+dzyPBQ=="
+  }
 }
